@@ -7,4 +7,14 @@
   />
 
   <button type="submit" [disabled]="!profileForm.valid">Load User</button>
+
+  <div *ngIf="user">
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+
+  <!-- <div *ngIf="">
+    <p>User not found</p>
+  </div> -->
 </form>
