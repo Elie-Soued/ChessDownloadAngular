@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { chessPlayer } from './chessPlayer';
 
 @Injectable({
   providedIn: 'root',
@@ -10,22 +12,17 @@ export class DataService {
   player?: string;
   constructor(private http: HttpClient) {}
 
-  doesPlayerExist(player: string): Observable<any> {
-    return this.http.get(this.urlPlayer + player);
+  getPlayer(player: string) {
+    return this.http
+      .get<chessPlayer>(this.urlPlayer + player)
+      .pipe(catchError(this.handleError));
   }
 
-  getArchive(player: string): Observable<any> {
+  getArchive(player: string) {
     return this.http.get(`https://api.chess.com/pub/player/${player}/stats`);
   }
 
-  // handleError(error: HttpErrorResponse) {
-  //   return throwError(error.message || 'server error');
-  // }
-
-  // private handleError<T>(result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     return of(result as T);
-  //   };
-  // }
+  handleError(err: any) {
+    return throwError(err);
+  }
 }
