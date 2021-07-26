@@ -1,0 +1,15 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+img {
+  width: 70px;
+}
+
+app-footer {
+  width: 100%;
+}
