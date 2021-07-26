@@ -18,3 +18,7 @@ body {
 app-footer {
   width: 100%;
 }
+
+app-input {
+  margin-bottom: 20rem;
+}
