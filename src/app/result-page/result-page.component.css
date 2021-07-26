@@ -13,3 +13,12 @@ img {
 app-footer {
   width: 100%;
 }
+
+#profilePic {
+  width: 150px;
+  border-radius: 50%;
+}
+
+p {
+  font-size: larger;
+}

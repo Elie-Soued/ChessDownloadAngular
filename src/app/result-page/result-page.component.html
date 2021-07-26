@@ -1,7 +1,7 @@
 <div class="mainWrapper">
-  <p>Hello user</p>
-
-  <p>Here are your stats</p>
+  <p>Hey {{ user.name }}!</p>
+  <img id="profilePic" src="{{ user.avatar }}" />
+  <p>Here are your latest Chess.com stats!</p>
 
   <app-table></app-table>
   <a routerLink="/">
