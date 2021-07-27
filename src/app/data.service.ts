@@ -19,7 +19,9 @@ export class DataService {
   }
 
   getArchive(player: string) {
-    return this.http.get(`https://api.chess.com/pub/player/${player}/stats`);
+    return this.http
+      .get(`https://api.chess.com/pub/player/${player}/stats`)
+      .pipe(catchError(this.handleError));
   }
 
   handleError(err: any) {
