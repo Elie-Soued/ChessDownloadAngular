@@ -1,6 +1,16 @@
 <div class="mainWrapper">
   <p>Hey {{ user.name }}!</p>
-  <img id="profilePic" src="{{ user.avatar }}" />
+  <div *ngIf="user.avatar; else defaultProfilePic">
+    <img id="profilePic" src="{{ user.avatar }}" />
+  </div>
+  <ng-template #defaultProfilePic>
+    <img
+      id="defaultProfilePic"
+      src="../../assets/images/profilepic.JPG"
+      alt="defaultProfilePic"
+    />
+  </ng-template>
+
   <p>Here are your latest Chess.com stats!</p>
 
   <app-table></app-table>
