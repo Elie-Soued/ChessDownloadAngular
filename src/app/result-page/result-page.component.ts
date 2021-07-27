@@ -12,14 +12,11 @@ export class ResultPageComponent implements OnInit {
   constructor(private transferService: TransferService) {}
 
   ngOnInit(): void {
-    // this.transferService.receiveInfo().subscribe((d) => this.setUser(d));
-    // console.log(this.user);
     this.getInfo();
   }
 
   setUser(value: any) {
     this.user = value;
-    // console.log(this.user);
   }
 
   getInfo() {
