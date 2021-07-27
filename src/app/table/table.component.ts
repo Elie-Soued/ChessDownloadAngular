@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 import { TransferService } from '../transfer.service';
+import { archives } from '../archives';
 
 @Component({
   selector: 'app-table',
@@ -8,21 +8,22 @@ import { TransferService } from '../transfer.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  archives = {};
+  archives?: archives;
 
-  constructor(
-    private dataService: DataService,
-    private transferService: TransferService
-  ) {}
-
-  playerStats?: {};
+  constructor(private transferService: TransferService) {}
 
   ngOnInit(): void {
-    this.transferService.receiveInfo().subscribe((d) => this.setArchives(d));
+    this.getArchives();
   }
 
   setArchives(value: any) {
     this.archives = value;
-    // console.log(this.archives);
+    // console.log(this.archives?.chess_daily.last.rating);
+  }
+
+  getArchives() {
+    this.transferService
+      .receiveArchives()
+      .subscribe((d) => this.setArchives(d));
   }
 }
