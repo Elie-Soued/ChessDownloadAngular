@@ -8,21 +8,52 @@
   </div>
   <div class="row myrows align-items-center">
     <div class="col-3 mycols bold">Score</div>
-    <div class="col-3 mycols" id="dailyValue">No Value</div>
-    <div class="col-3 mycols" id="rapidValue">No Value</div>
-    <div class="col-3 mycols" id="blitzValue">No Value</div>
+    <div class="col-3 mycols" id="dailyValue">
+      {{ archives?.chess_daily?.last?.rating || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="rapidValue">
+      {{ archives?.chess_rapid?.last?.rating || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="blitzValue">
+      {{ archives?.chess_blitz?.last?.rating || "No value" }}
+    </div>
   </div>
   <div class="row myrows align-items-center">
     <div class="col-3 mycols bold">Wins</div>
-    <div class="col-3 mycols" id="dailyVictories">No Value</div>
-    <div class="col-3 mycols" id="rapidVictories">No Value</div>
-    <div class="col-3 mycols" id="blitzVictories">No Value</div>
+    <div class="col-3 mycols" id="dailyVictories">
+      {{ archives?.chess_daily?.record?.win || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="rapidVictories">
+      {{ archives?.chess_rapid?.record?.win || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="blitzVictories">
+      {{ archives?.chess_blitz?.record?.win || "No value" }}
+    </div>
   </div>
 
   <div class="row myrows align-items-center">
     <div class="col-3 mycols bold">Losses</div>
-    <div class="col-3 mycols" id="dailyLosses">No Value</div>
-    <div class="col-3 mycols" id="rapidLosses">No Value</div>
-    <div class="col-3 mycols" id="blitzLosses">No Value</div>
+    <div class="col-3 mycols" id="dailyLosses">
+      {{ archives?.chess_daily?.record?.loss || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="rapidLosses">
+      {{ archives?.chess_rapid?.record?.loss || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="blitzLosses">
+      {{ archives?.chess_blitz?.record?.loss || "No value" }}
+    </div>
+  </div>
+
+  <div class="row myrows align-items-center">
+    <div class="col-3 mycols bold">Draws</div>
+    <div class="col-3 mycols" id="dailyVictories">
+      {{ archives?.chess_daily?.record?.draw || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="rapidVictories">
+      {{ archives?.chess_rapid?.record?.draw || "No value" }}
+    </div>
+    <div class="col-3 mycols" id="blitzVictories">
+      {{ archives?.chess_blitz?.record?.draw || "No value" }}
+    </div>
   </div>
 </div>
