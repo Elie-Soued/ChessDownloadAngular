@@ -18,7 +18,6 @@ export class TableComponent implements OnInit {
 
   setArchives(value: any) {
     this.archives = value;
-    // console.log(this.archives?.chess_daily.last.rating);
   }
 
   getArchives() {
