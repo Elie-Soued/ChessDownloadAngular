@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DataService } from '../data.service';
-import { TransferService } from '../transfer.service';
-import { chessPlayer } from '../chessPlayer';
-import { archives } from '../archives';
+import { DataService } from '../../Services/Data/data.service';
+import { TransferService } from '../../Services/Transfer/transfer.service';
+import { chessPlayer } from '../../Interfaces/chessPlayer';
+import { archives } from '../../Interfaces/archives';
 
 @Component({
   selector: 'app-input',

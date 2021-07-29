@@ -7,12 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { InputComponent } from './input/input.component';
-import { TableComponent } from './table/table.component';
-import { ResultPageComponent } from './result-page/result-page.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { InputComponent } from './Components/input/input.component';
+import { TableComponent } from './Components/table/table.component';
+import { ResultPageComponent } from './Vues/result-page/result-page.component';
+import { LandingPageComponent } from './Vues/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [

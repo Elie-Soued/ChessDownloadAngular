@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransferService } from '../transfer.service';
+import { TransferService } from '../../Services/Transfer/transfer.service';
 
 @Component({
   selector: 'app-result-page',
