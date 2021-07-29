@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataService } from '../data.service';
@@ -11,7 +11,9 @@ import { archives } from '../archives';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css'],
 })
-export class InputComponent {
+export class InputComponent implements AfterViewInit {
+  @ViewChild('userExists') userDoesExists?: ElementRef;
+  @ViewChild('userDoesNotExist') userDoesNotExist?: ElementRef;
   user?: chessPlayer;
   error?: HttpErrorResponse;
   archives?: archives;
@@ -22,37 +24,37 @@ export class InputComponent {
   constructor(
     private fb: FormBuilder,
     private dataService: DataService,
-    private transferService: TransferService
+    private transferService: TransferService,
+    private element: ElementRef
   ) {}
 
   onSubmit() {
     this.getUser();
   }
 
-  //These are the setters
+  //Setters
 
-  setUser(value: any) {
+  setUser(value: chessPlayer) {
     this.user = value;
+    console.log(this.user);
     this.sendUserInfo(this.user);
   }
 
-  setArchive(value: any) {
+  setArchive(value: archives) {
     this.archives = value;
     this.sendUserArchives(this.archives);
-    console.log(this.archives?.chess_daily.last.rating);
   }
 
-  setError(value: any) {
+  setError(value: HttpErrorResponse) {
     this.error = value;
   }
 
-  //These are the getters
+  //Getters
 
   getUser(): void {
     this.dataService.getPlayer(this.profileForm.value.username).subscribe(
-      (values: any) => {
+      (values: chessPlayer) => {
         this.setUser(values);
-        console.log(this.user);
       },
       (error) => {
         this.setError(error);
@@ -60,19 +62,37 @@ export class InputComponent {
     );
   }
 
-  getArchive() {
-    this.dataService
-      .getArchive(this.profileForm.value.username)
-      .subscribe((values: any) => this.setArchive(values));
+  getArchive(): void {
+    this.dataService.getArchive(this.profileForm.value.username).subscribe(
+      (values: archives) => {
+        this.setArchive(values);
+      },
+      (error) => {
+        this.setError(error);
+      }
+    );
   }
 
   //These methods send Data to unrelated Components
 
-  sendUserInfo(user: any) {
+  sendUserInfo(user: chessPlayer) {
     this.transferService.sendInfo(user);
   }
 
-  sendUserArchives(data: any) {
+  sendUserArchives(data: archives) {
     this.transferService.sendArchives(data);
+  }
+
+  ngAfterViewInit() {
+    // if (this.user) {
+    //   this.userDoesExists?.nativeElement.setAttribute('hidden', false);
+    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', true);
+    // } else if (this.error) {
+    //   this.userDoesExists?.nativeElement.setAttribute('hidden', true);
+    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', false);
+    // } else {
+    //   this.userDoesExists?.nativeElement.setAttribute('hidden', false);
+    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', false);
+    // }
   }
 }
