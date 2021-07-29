@@ -1,0 +1,69 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <input
+    id="username"
+    type="text"
+    formControlName="username"
+    placeholder="Enter your username"
+  />
+
+  <button type="submit" [disabled]="!profileForm.valid">Load User</button>
+
+  <!-- Option 1 -->
+
+  <div [ngClass]="user ? 'show' : 'hidden'">
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+
+  <p [ngClass]="error ? 'show' : 'hidden'">User not found</p>
+
+  <!-- Option 2 -->
+
+  <!-- <div [ngClass]="{ show: user, hidden: error }">
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+
+  <p [ngClass]="{ show: error, hidden: user }">User not found</p> -->
+
+  <!-- Option 3 -->
+
+  <!-- <div #userExists>
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+
+  <p #userDoesNotExist>User not found</p> -->
+
+  <!-- Option 4 -->
+
+  <!-- <div *ngIf="user; else noUser">
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+  <ng-template #noUser>
+    <div></div>
+  </ng-template>
+
+  <div *ngIf="error; else noError">
+    <p>User not found</p>
+  </div>
+
+  <ng-template #noError>
+    <div></div>
+  </ng-template> -->
+
+  <!-- Option 5-->
+
+  <!-- <div class="hidden" [class.show]="user">
+    <a routerLink="/results">
+      <button (click)="getArchive()">Chess.com Game</button>
+    </a>
+  </div>
+
+  <p class="hidden" [class.show]="error">User not found</p> -->
+</form>

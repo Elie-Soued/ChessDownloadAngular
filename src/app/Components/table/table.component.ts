@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TransferService } from '../transfer.service';
-import { archives } from '../archives';
+import { TransferService } from '../../Services/Transfer/transfer.service';
+import { archives } from '../../Interfaces/archives';
 
 @Component({
   selector: 'app-table',
