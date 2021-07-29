@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataService } from '../../Services/Data/data.service';
@@ -11,7 +11,7 @@ import { archives } from '../../Interfaces/archives';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css'],
 })
-export class InputComponent implements AfterViewInit {
+export class InputComponent {
   @ViewChild('userExists') userDoesExists?: ElementRef;
   @ViewChild('userDoesNotExist') userDoesNotExist?: ElementRef;
   user?: chessPlayer;
@@ -25,7 +25,7 @@ export class InputComponent implements AfterViewInit {
     private fb: FormBuilder,
     private dataService: DataService,
     private transferService: TransferService,
-    private element: ElementRef
+    private renderer: Renderer2
   ) {}
 
   onSubmit() {
@@ -36,7 +36,8 @@ export class InputComponent implements AfterViewInit {
 
   setUser(value: chessPlayer) {
     this.user = value;
-    console.log(this.user);
+    this.removePTag();
+    this.addButton();
     this.sendUserInfo(this.user);
   }
 
@@ -47,6 +48,8 @@ export class InputComponent implements AfterViewInit {
 
   setError(value: HttpErrorResponse) {
     this.error = value;
+    this.removeButton();
+    this.addPTag();
   }
 
   //Getters
@@ -83,16 +86,28 @@ export class InputComponent implements AfterViewInit {
     this.transferService.sendArchives(data);
   }
 
-  ngAfterViewInit() {
-    // if (this.user) {
-    //   this.userDoesExists?.nativeElement.setAttribute('hidden', false);
-    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', true);
-    // } else if (this.error) {
-    //   this.userDoesExists?.nativeElement.setAttribute('hidden', true);
-    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', false);
-    // } else {
-    //   this.userDoesExists?.nativeElement.setAttribute('hidden', false);
-    //   this.userDoesNotExist?.nativeElement.setAttribute('hidden', false);
-    // }
+  //Class Manipulation
+
+  removeButton() {
+    this.renderer.addClass(this.userDoesExists?.nativeElement, 'hidden');
+  }
+
+  addButton() {
+    this.renderer.removeClass(this.userDoesExists?.nativeElement, 'hidden');
+  }
+  addPTag() {
+    this.renderer.removeClass(this.userDoesNotExist?.nativeElement, 'hidden');
+  }
+
+  removePTag() {
+    this.renderer.addClass(this.userDoesNotExist?.nativeElement, 'hidden');
+  }
+
+  removeClass(element: ElementRef) {
+    this.renderer.removeClass(element?.nativeElement, 'hidden');
+  }
+
+  addClass(element: ElementRef) {
+    this.renderer.addClass(element?.nativeElement, 'hidden');
   }
 }
