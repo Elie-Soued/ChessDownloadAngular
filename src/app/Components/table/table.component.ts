@@ -8,7 +8,7 @@ import { archives } from '../../Interfaces/archives';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  archives?: archives;
+  archives = {} as archives;
 
   constructor(private transferService: TransferService) {}
 
@@ -16,7 +16,7 @@ export class TableComponent implements OnInit {
     this.getArchives();
   }
 
-  setArchives(value: any) {
+  setArchives(value: archives) {
     this.archives = value;
   }
 
