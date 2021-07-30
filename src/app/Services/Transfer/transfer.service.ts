@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { archives } from 'src/app/Interfaces/archives';
+import { chessPlayer } from 'src/app/Interfaces/chessPlayer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransferService {
-  private userInfo = new BehaviorSubject('');
-  private userArchives = new BehaviorSubject('');
+  private userInfo = new BehaviorSubject<chessPlayer>({} as chessPlayer);
+  private userArchives = new BehaviorSubject<archives>({} as archives);
   constructor() {}
 
-  sendInfo(info: any) {
+  sendInfo(info: chessPlayer) {
     this.userInfo.next(info);
   }
 
@@ -17,7 +19,7 @@ export class TransferService {
     return this.userInfo.asObservable();
   }
 
-  sendArchives(info: any) {
+  sendArchives(info: archives) {
     this.userArchives.next(info);
   }
 
