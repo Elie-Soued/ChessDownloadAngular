@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../../Services/Transfer/transfer.service';
+import { chessPlayer } from 'src/app/Interfaces/chessPlayer';
 
 @Component({
   selector: 'app-result-page',
@@ -7,7 +8,7 @@ import { TransferService } from '../../Services/Transfer/transfer.service';
   styleUrls: ['./result-page.component.css'],
 })
 export class ResultPageComponent implements OnInit {
-  user?: any;
+  user = {} as chessPlayer;
 
   constructor(private transferService: TransferService) {}
 
@@ -15,7 +16,7 @@ export class ResultPageComponent implements OnInit {
     this.getInfo();
   }
 
-  setUser(value: any) {
+  setUser(value: chessPlayer) {
     this.user = value;
   }
 
