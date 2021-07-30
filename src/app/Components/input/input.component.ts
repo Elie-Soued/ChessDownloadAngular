@@ -12,8 +12,8 @@ import { archives } from '../../Interfaces/archives';
   styleUrls: ['./input.component.css'],
 })
 export class InputComponent {
-  @ViewChild('userExists') userDoesExists?: ElementRef;
-  @ViewChild('userDoesNotExist') userDoesNotExist?: ElementRef;
+  @ViewChild('userExists') userDoesExist = {} as ElementRef;
+  @ViewChild('userDoesNotExist') userDoesNotExist = {} as ElementRef;
   user?: chessPlayer;
   error?: HttpErrorResponse;
   archives?: archives;
@@ -36,9 +36,9 @@ export class InputComponent {
 
   setUser(value: chessPlayer) {
     this.user = value;
-    this.removePTag();
-    this.addButton();
     this.sendUserInfo(this.user);
+    this.addHiddenClass(this.userDoesNotExist);
+    this.removeHiddenClass(this.userDoesExist);
   }
 
   setArchive(value: archives) {
@@ -48,8 +48,8 @@ export class InputComponent {
 
   setError(value: HttpErrorResponse) {
     this.error = value;
-    this.removeButton();
-    this.addPTag();
+    this.addHiddenClass(this.userDoesExist);
+    this.removeHiddenClass(this.userDoesNotExist);
   }
 
   //Getters
@@ -77,7 +77,6 @@ export class InputComponent {
   }
 
   //These methods send Data to unrelated Components
-
   sendUserInfo(user: chessPlayer) {
     this.transferService.sendInfo(user);
   }
@@ -87,27 +86,11 @@ export class InputComponent {
   }
 
   //Class Manipulation
-
-  removeButton() {
-    this.renderer.addClass(this.userDoesExists?.nativeElement, 'hidden');
+  removeHiddenClass(element: ElementRef) {
+    this.renderer.removeClass(element.nativeElement, 'hidden');
   }
 
-  addButton() {
-    this.renderer.removeClass(this.userDoesExists?.nativeElement, 'hidden');
-  }
-  addPTag() {
-    this.renderer.removeClass(this.userDoesNotExist?.nativeElement, 'hidden');
-  }
-
-  removePTag() {
-    this.renderer.addClass(this.userDoesNotExist?.nativeElement, 'hidden');
-  }
-
-  removeClass(element: ElementRef) {
-    this.renderer.removeClass(element?.nativeElement, 'hidden');
-  }
-
-  addClass(element: ElementRef) {
-    this.renderer.addClass(element?.nativeElement, 'hidden');
+  addHiddenClass(element: ElementRef) {
+    this.renderer.addClass(element.nativeElement, 'hidden');
   }
 }
