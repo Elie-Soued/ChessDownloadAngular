@@ -8,11 +8,11 @@
 
   <button type="submit" [disabled]="!profileForm.valid">Load User</button>
 
-  <div #userExists *ngIf="user">
+  <div class="hidden" #userExists>
     <a routerLink="/results">
       <button (click)="getArchive()">Chess.com Game</button>
     </a>
   </div>
 
-  <p #userDoesNotExist *ngIf="error">User not found</p>
+  <p class="hidden" #userDoesNotExist>User not found</p>
 </form>
