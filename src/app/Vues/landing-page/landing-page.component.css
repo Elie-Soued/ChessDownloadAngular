@@ -15,6 +15,10 @@ body {
   color: black;
 }
 
+app-header {
+  margin-top: 1rem;
+}
+
 app-footer {
   width: 100%;
 }
