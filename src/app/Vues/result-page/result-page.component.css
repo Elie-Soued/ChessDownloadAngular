@@ -1,3 +1,7 @@
+* {
+  font-family: "Newsreader", serif;
+}
+
 .mainWrapper {
   display: flex;
   flex-direction: column;
