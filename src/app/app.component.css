@@ -1,19 +1,1 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 95vh;
-  width: auto;
-  background-color: white;
-  color: black;
-}
-
-app-footer {
-  width: 100%;
-}
