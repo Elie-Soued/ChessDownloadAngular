@@ -5,9 +5,12 @@
 .mainWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-  height: 100vh;
+  min-height: 100vh;
+  width: auto;
+  background-color: white;
+  color: black;
 }
 
 img {
