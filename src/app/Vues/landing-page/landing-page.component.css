@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 95vh;
+  min-height: 100vh;
   width: auto;
   background-color: white;
   color: black;
